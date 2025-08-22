@@ -1,0 +1,4 @@
+(executable
+ (public_name poker_odds_calculator)
+ (name main)
+ (libraries poker_odds_calculator)) 

@@ -1,0 +1,4 @@
+(library
+ (name poker_odds_calculator)
+ (public_name poker_odds_calculator)
+ (libraries graphics unix threads)) 
