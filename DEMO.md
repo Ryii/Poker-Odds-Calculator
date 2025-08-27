@@ -1,6 +1,6 @@
-# 🎮 Poker Odds Calculator Demo
+# Poker Odds Calculator Demo
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # First time setup (installs OCaml if needed)
@@ -10,7 +10,7 @@
 ./run.sh
 ```
 
-## 🎯 Demo Scenarios That Will Blow You Away
+## Demo Scenarios That Will Blow You Away
 
 ### 1. **The Royal Flush Draw**
 
@@ -55,7 +55,7 @@
 - **Visual**: Almost entirely green equity bar
 - **Note**: The hand strength meter maxes out
 
-## 🎨 Visual Features to Notice
+## Visual Features to Notice
 
 ### **Animated Card Selection**
 
@@ -81,7 +81,7 @@
 - Visual representation of bet sizing
 - Clear CALL/FOLD recommendation
 
-## 🎹 Keyboard Shortcuts
+## Keyboard Shortcuts
 
 ### **Card Input** (select a card first)
 
@@ -95,7 +95,7 @@
 2. **Open-Ended**: Set 8♥ 9♥ board 6♦ 7♣ 2♠
 3. **Top Pair**: Set A♦ K♣ board A♠ 7♥ 2♣
 
-## 📊 Performance Showcase
+## Performance Showcase
 
 While the GUI runs, notice:
 
@@ -104,7 +104,7 @@ While the GUI runs, notice:
 - **No lag** when animating
 - **Low CPU usage** thanks to optimized algorithms
 
-## 🎪 Advanced Features
+## Advanced Features
 
 ### **Monte Carlo Simulation**
 
