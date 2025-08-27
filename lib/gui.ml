@@ -216,7 +216,7 @@ let draw_state () =
   
 
   set_color white;
-  moveto (window_width / 2 - 150) (window_height - 50);
+  moveto (window_width / 2 - 150) (window_height / 2 + 180);
   draw_string "POKER ODDS CALCULATOR";
   
 

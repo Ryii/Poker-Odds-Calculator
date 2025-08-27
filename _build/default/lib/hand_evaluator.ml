@@ -1,7 +1,4 @@
-(* High-performance poker hand evaluator *)
-(* Using a variation of the Cactus Kev's evaluator for speed *)
 
-(* Helper for List.take since it might not be in stdlib *)
 module List = struct
   include List
   
@@ -22,57 +19,57 @@ type hand_rank =
   | FourOfAKind of int * int  (* quads, kicker *)
   | StraightFlush of int  (* high card *)
 
-(* Pre-computed tables for fast evaluation *)
+
 let flush_check = Array.make 8192 false
 let straight_check = Array.make 8192 0
 
 let init_tables () =
-  (* Initialize straight check table *)
+
   let straights = [
-    0b1111100000000; (* A-T straight *)
-    0b0111110000000; (* K-9 straight *)
-    0b0011111000000; (* Q-8 straight *)
-    0b0001111100000; (* J-7 straight *)
-    0b0000111110000; (* T-6 straight *)
-    0b0000011111000; (* 9-5 straight *)
-    0b0000001111100; (* 8-4 straight *)
-    0b0000000111110; (* 7-3 straight *)
-    0b0000000011111; (* 6-2 straight *)
-    0b1000000001111; (* 5-A straight (wheel) *)
+    0b1111100000000;
+    0b0111110000000;
+    0b0011111000000;
+    0b0001111100000;
+    0b0000111110000;
+    0b0000011111000;
+    0b0000001111100;
+    0b0000000111110;
+    0b0000000011111;
+    0b1000000001111;
   ] in
   List.iteri (fun i pattern ->
     straight_check.(pattern) <- 12 - i
   ) straights;
   
-  (* Initialize flush check table *)
+
   for i = 0 to 8191 do
-    if (i land (i - 1)) <> 0 && (* Has at least 2 bits set *)
-        (i land (i - 1) land ((i land (i - 1)) - 1)) <> 0 && (* At least 3 *)
+    if (i land (i - 1)) <> 0 &&
+        (i land (i - 1) land ((i land (i - 1)) - 1)) <> 0 &&
         (i land (i - 1) land ((i land (i - 1)) - 1) land 
-         ((i land (i - 1) land ((i land (i - 1)) - 1)) - 1)) <> 0 && (* At least 4 *)
+         ((i land (i - 1) land ((i land (i - 1)) - 1)) - 1)) <> 0 &&
         (i land (i - 1) land ((i land (i - 1)) - 1) land 
          ((i land (i - 1) land ((i land (i - 1)) - 1)) - 1) land
          ((i land (i - 1) land ((i land (i - 1)) - 1) land 
-          ((i land (i - 1) land ((i land (i - 1)) - 1)) - 1)) - 1)) <> 0 (* At least 5 *)
+          ((i land (i - 1) land ((i land (i - 1)) - 1)) - 1)) - 1)) <> 0
     then flush_check.(i) <- true
   done
 
 let () = init_tables ()
 
-(* Count set bits (popcount) *)
+
 let popcount n =
   let rec count n acc =
     if n = 0 then acc
     else count (n land (n - 1)) (acc + 1)
   in count n 0
 
-(* Get rank bits for a set of cards *)
+
 let get_rank_bits cards =
   List.fold_left (fun acc card ->
     acc lor (1 lsl (Card.rank_to_int card.Card.rank))
   ) 0 cards
 
-(* Get suit bits for each suit *)
+
 let get_suit_bits cards =
   let suits = Array.make 4 0 in
   List.iter (fun card ->
@@ -82,7 +79,7 @@ let get_suit_bits cards =
   ) cards;
   suits
 
-(* Find the top N set bits *)
+
 let top_bits n bits =
   let rec find bits found remaining =
     if remaining = 0 || bits = 0 then List.rev found
@@ -107,7 +104,7 @@ let top_bits n bits =
       find (bits lxor (1 lsl highest)) (highest :: found) (remaining - 1)
   in find bits [] n
 
-(* Evaluate a 5-7 card poker hand *)
+
 let evaluate_hand cards =
   let rank_bits = get_rank_bits cards in
   let suit_bits = get_suit_bits cards in
@@ -123,21 +120,21 @@ let evaluate_hand cards =
   
   match flush_suit with
   | Some suit_idx ->
-      (* We have a flush, check for straight flush *)
+
       let flush_ranks = suit_bits.(suit_idx) in
       if straight_check.(flush_ranks) > 0 then
         StraightFlush straight_check.(flush_ranks)
       else
         Flush (top_bits 5 flush_ranks)
   | None ->
-      (* No flush, check other hands *)
+
       let rank_counts = Array.make 13 0 in
       List.iter (fun card ->
         let r = Card.rank_to_int card.Card.rank in
         rank_counts.(r) <- rank_counts.(r) + 1
       ) cards;
       
-      (* Find pairs, trips, quads *)
+
       let quads = ref [] in
       let trips = ref [] in
       let pairs = ref [] in
@@ -163,13 +160,13 @@ let evaluate_hand cards =
       | [], [], p1::p2::_ -> TwoPair (p1, p2, List.hd !singles)
       | [], [], [p] -> Pair (p, List.take 3 !singles)
       | [], [], [] ->
-          (* Check for straight *)
+
           if straight_check.(rank_bits) > 0 then
             Straight straight_check.(rank_bits)
           else
             HighCard (top_bits 5 rank_bits)
 
-(* Compare two evaluated hands *)
+
 let compare_hands h1 h2 =
   let rank_value = function
     | StraightFlush _ -> 8

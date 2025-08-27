@@ -1,12 +1,10 @@
-(* Card representation with bitwise operations for performance *)
-
 type rank = Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten | Jack | Queen | King | Ace
 type suit = Hearts | Diamonds | Clubs | Spades
 
 type t = {
   rank : rank;
   suit : suit;
-  bit_value : int;  (* For fast hand evaluation *)
+  bit_value : int;
 }
 
 let rank_to_int = function
@@ -74,7 +72,6 @@ let compare c1 c2 =
 
 let equal c1 c2 = compare c1 c2 = 0
 
-(* Generate standard 52-card deck *)
 let full_deck () =
   let ranks = [Two; Three; Four; Five; Six; Seven; Eight; Nine; Ten; Jack; Queen; King; Ace] in
   let suits = [Hearts; Diamonds; Clubs; Spades] in
