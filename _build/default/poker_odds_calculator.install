@@ -1,0 +1,37 @@
+lib: [
+  "_build/install/default/lib/poker_odds_calculator/META"
+  "_build/install/default/lib/poker_odds_calculator/card.ml"
+  "_build/install/default/lib/poker_odds_calculator/dune-package"
+  "_build/install/default/lib/poker_odds_calculator/equity_calculator.ml"
+  "_build/install/default/lib/poker_odds_calculator/gui.ml"
+  "_build/install/default/lib/poker_odds_calculator/hand_evaluator.ml"
+  "_build/install/default/lib/poker_odds_calculator/opam"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator.a"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator.cma"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator.cmi"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator.cmt"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator.cmx"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator.cmxa"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator.ml"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Card.cmi"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Card.cmt"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Card.cmx"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Equity_calculator.cmi"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Equity_calculator.cmt"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Equity_calculator.cmx"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Gui.cmi"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Gui.cmt"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Gui.cmx"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Hand_evaluator.cmi"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Hand_evaluator.cmt"
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator__Hand_evaluator.cmx"
+]
+libexec: [
+  "_build/install/default/lib/poker_odds_calculator/poker_odds_calculator.cmxs"
+]
+bin: [
+  "_build/install/default/bin/poker_odds_calculator.exe"
+]
+doc: [
+  "_build/install/default/doc/poker_odds_calculator/README.md"
+]

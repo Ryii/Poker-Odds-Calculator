@@ -1,0 +1,6 @@
+description = ""
+requires = "graphics threads unix"
+archive(byte) = "poker_odds_calculator.cma"
+archive(native) = "poker_odds_calculator.cmxa"
+plugin(byte) = "poker_odds_calculator.cma"
+plugin(native) = "poker_odds_calculator.cmxs"

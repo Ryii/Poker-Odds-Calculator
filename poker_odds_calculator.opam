@@ -1,0 +1,31 @@
+opam-version: "2.0"
+name: "poker_odds_calculator"
+version: "0.1.0"
+synopsis: "A poker odds calculator implemented in OCaml"
+description: "A comprehensive poker odds calculator that can compute equity for Texas Hold'em hands with a graphical user interface."
+maintainer: "Your Name <your.email@example.com>"
+author: "Your Name <your.email@example.com>"
+license: "MIT"
+homepage: "https://github.com/yourusername/poker-odds-calculator"
+bug-reports: "https://github.com/yourusername/poker-odds-calculator/issues"
+depends: [
+  "ocaml" {>= "4.08"}
+  "dune" {>= "3.0"}
+  "graphics"
+  "unix"
+  "threads"
+]
+build: [
+  ["dune" "subst"] {pinned}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]

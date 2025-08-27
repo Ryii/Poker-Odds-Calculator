@@ -1,12 +1,10 @@
-(* Card representation with bitwise operations for performance *)
-
 type rank = Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten | Jack | Queen | King | Ace
 type suit = Hearts | Diamonds | Clubs | Spades
 
 type t = {
   rank : rank;
   suit : suit;
-  bit_value : int;  (* For fast hand evaluation *)
+  bit_value : int;
 }
 
 let rank_to_int = function
@@ -32,7 +30,7 @@ let rank_to_string = function
   | Queen -> "Q" | King -> "K" | Ace -> "A"
 
 let suit_to_string = function
-  | Hearts -> "♥" | Diamonds -> "♦" | Clubs -> "♣" | Spades -> "♠"
+  | Hearts -> "H" | Diamonds -> "D" | Clubs -> "C" | Spades -> "S"
 
 let suit_to_char = function
   | Hearts -> 'h' | Diamonds -> 'd' | Clubs -> 'c' | Spades -> 's'
@@ -60,10 +58,10 @@ let from_string str =
     | _ -> failwith "Invalid rank"
   in
   let suit = match suit_char with
-    | 'h' | 'H' | '♥' -> Hearts
-    | 'd' | 'D' | '♦' -> Diamonds  
-    | 'c' | 'C' | '♣' -> Clubs
-    | 's' | 'S' | '♠' -> Spades
+    | 'h' | 'H' -> Hearts
+    | 'd' | 'D' -> Diamonds  
+    | 'c' | 'C' -> Clubs
+    | 's' | 'S' -> Spades
     | _ -> failwith "Invalid suit"
   in
   create rank suit
@@ -74,7 +72,6 @@ let compare c1 c2 =
 
 let equal c1 c2 = compare c1 c2 = 0
 
-(* Generate standard 52-card deck *)
 let full_deck () =
   let ranks = [Two; Three; Four; Five; Six; Seven; Eight; Nine; Ten; Jack; Queen; King; Ace] in
   let suits = [Hearts; Diamonds; Clubs; Spades] in

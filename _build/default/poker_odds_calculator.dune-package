@@ -1,0 +1,80 @@
+(lang dune 3.20)
+(name poker_odds_calculator)
+(sections
+ (lib .)
+ (libexec .)
+ (bin ../../bin)
+ (doc ../../doc/poker_odds_calculator))
+(files
+ (lib
+  (META
+   card.ml
+   dune-package
+   equity_calculator.ml
+   gui.ml
+   hand_evaluator.ml
+   opam
+   poker_odds_calculator.a
+   poker_odds_calculator.cma
+   poker_odds_calculator.cmi
+   poker_odds_calculator.cmt
+   poker_odds_calculator.cmx
+   poker_odds_calculator.cmxa
+   poker_odds_calculator.ml
+   poker_odds_calculator__Card.cmi
+   poker_odds_calculator__Card.cmt
+   poker_odds_calculator__Card.cmx
+   poker_odds_calculator__Equity_calculator.cmi
+   poker_odds_calculator__Equity_calculator.cmt
+   poker_odds_calculator__Equity_calculator.cmx
+   poker_odds_calculator__Gui.cmi
+   poker_odds_calculator__Gui.cmt
+   poker_odds_calculator__Gui.cmx
+   poker_odds_calculator__Hand_evaluator.cmi
+   poker_odds_calculator__Hand_evaluator.cmt
+   poker_odds_calculator__Hand_evaluator.cmx))
+ (libexec (poker_odds_calculator.cmxs))
+ (bin (poker_odds_calculator.exe))
+ (doc (README.md)))
+(library
+ (name poker_odds_calculator)
+ (kind normal)
+ (archives
+  (byte poker_odds_calculator.cma)
+  (native poker_odds_calculator.cmxa))
+ (plugins
+  (byte poker_odds_calculator.cma)
+  (native poker_odds_calculator.cmxs))
+ (native_archives poker_odds_calculator.a)
+ (requires graphics unix threads)
+ (main_module_name Poker_odds_calculator)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name poker_odds_calculator)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Poker_odds_calculator)
+      (impl (path poker_odds_calculator.ml-gen))))
+    (name Poker_odds_calculator)
+    (modules
+     (module
+      (obj_name poker_odds_calculator__Card)
+      (visibility public)
+      (source (path Card) (impl (path card.ml))))
+     (module
+      (obj_name poker_odds_calculator__Equity_calculator)
+      (visibility public)
+      (source (path Equity_calculator) (impl (path equity_calculator.ml))))
+     (module
+      (obj_name poker_odds_calculator__Gui)
+      (visibility public)
+      (source (path Gui) (impl (path gui.ml))))
+     (module
+      (obj_name poker_odds_calculator__Hand_evaluator)
+      (visibility public)
+      (source (path Hand_evaluator) (impl (path hand_evaluator.ml))))))
+   (wrapped true))))
